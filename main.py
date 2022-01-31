@@ -12,12 +12,13 @@ timer = 0
 sceneinscene = 0
 scene = 0
 bullettimer = 0
+snowballtimer = 0
 spritetimer = 0
-snowmantimer = 200
+snowmantimer = 50
 currentnoodlesprite = 0
 score = 0
 stage = 0
-stagetimer = 10000
+stagetimer = 2500
 sodas = 0
 keys = pygame.key.get_pressed()
 def blit(image,scale,pos):
@@ -25,6 +26,7 @@ def blit(image,scale,pos):
     screen.blit(image,pos)
 
 bullets = []
+
 snowmen = []
 snowmanrects = []
 
@@ -46,6 +48,8 @@ throw = pygame.mixer.Sound("snowball.mp3")
 hit = pygame.mixer.Sound("snowmanhit.mp3")
 explosion = pygame.mixer.Sound("sodabomb.mp3")
 
+clock = pygame.time.Clock()
+
 class Snowman:
     def __init__(self,start,end,a,b):
         self.x = random.randrange(0,310)
@@ -56,6 +60,12 @@ class Snowball:
     def __init__(self,a,b):
         self.x = mousex
         self.y = mousey
+        self.r = pygame.Rect(self.x,self.y,a,b)
+
+class Enemyball:
+    def __init__(self,a,b):
+        self.x = 0
+        self.y = 0
         self.r = pygame.Rect(self.x,self.y,a,b)
 
 exec(open("highscore.py").read())
@@ -92,7 +102,7 @@ while running:
             pygame.mixer.music.load("song.mp3")
             music = True
             sodas = 0
-            stagetimer = 10000
+            stagetimer = 3500
             stage = 1
             score = 0
             scene = 1
@@ -100,7 +110,7 @@ while running:
         screen.blit(text.render("Stage "+str(stage), False, (0,0,0)),(0,0))
         screen.blit(text.render("Score: "+str(score), False, (0,0,0)),(0,25))
         screen.blit(text.render("Sodas: "+str(sodas), False, (0,0,0)),(0,50))
-        screen.blit(text.render(str(stagetimer)+" ticks until next stage", False, (0,0,0)),(0,75))
+        screen.blit(text.render(str(round(stagetimer/60))+" seconds until next stage", False, (0,0,0)),(0,75))
         if spritetimer < 20:
             spritetimer += 1
         else:
@@ -112,11 +122,11 @@ while running:
         if pygame.mouse.get_pressed()[0] and bullettimer < 0:
             throw.play()
             bullets.append(Snowball(20,20))
-            bullettimer = 100
+            bullettimer = 25
         if bullettimer > -1:
             bullettimer += -1
         for b in bullets:
-            b.y += -1
+            b.y += -2*stage
             b.r.topleft = b.x,b.y
             if b.y > 0:
                 pygame.draw.circle(screen,(200,200,200),(b.x,b.y),10)
@@ -125,10 +135,10 @@ while running:
         if snowmantimer > -1:
             snowmantimer += -1
         else:
-            snowmantimer = 200
+            snowmantimer = round(75/stage)
             snowmen.append(Snowman(78,302,50,78))
         for s in snowmen:
-            s.y += 0.5
+            s.y += 2*stage
             s.r.topleft = s.x,s.y
             for b in bullets:
                 if s.r.colliderect(b.r):
@@ -166,7 +176,7 @@ while running:
             pygame.mixer.music.load("song.mp3")
             music = True
             sodas += 1
-            stagetimer = 10000
+            stagetimer = 2500
             stage += 1
             scene = 1
     elif scene == 3:
@@ -185,7 +195,8 @@ while running:
         if pygame.mouse.get_pressed()[0]:
             sceneinscene = 0
             scene = 0
-    pygame.display.flip()
+    clock.tick(60)
+    pygame.display.update()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
