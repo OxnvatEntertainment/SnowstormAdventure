@@ -16,3 +16,7 @@ The main character of The Toon Teens Comic, Noodle sets out to get a bottle of S
 Forged from the snows of New Hampshire, Snowmen rule the streets during snowstorms. Surprisingly, they are vulnerable to snowballs, and especially vulnerable to lemon-lime Spite. They are worth 20 points times what stage Noodle is on.
 ## Spite
 When Noodle is being overwhelmed by the snowmen, he can shake up a Spite and sweep all of the snowmen from the screen. Snowmen defeated from a soda blast are worth half as many points.
+# Controls
+- Move your mouse to move Noodle
+- Click to throw snowballs
+- Hit the spacebar to use soda bombs
