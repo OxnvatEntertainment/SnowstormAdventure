@@ -165,7 +165,7 @@ while running:
         if snowmantimer > -1:
             snowmantimer += -1
         else:
-            snowmantimer = round(75/stage)
+            snowmantimer = round(15/stage)
             snowmen.append(Snowman(78,302,50,78))
             coins.append(Coin(78,302,50,50))
         if stagetimer > -1:
@@ -174,7 +174,7 @@ while running:
             snowmen = []
             coins = []
             bullets = []
-            if coincount > 9:
+            if coincount >= 10*stage:
                 pygame.mixer.music.load("win.mp3")
                 music = True
                 scene = 2
@@ -188,7 +188,7 @@ while running:
         if pygame.mouse.get_pressed()[0]:
             pygame.mixer.music.load("song.mp3")
             music = True
-            coincount += -10
+            coincount += -15*stage
             sodas += 1
             stagetimer = 1000
             stage += 1

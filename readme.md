@@ -19,7 +19,7 @@ The love interest of both Noodle and Chris, Mary sees the snowstorm and decides 
 ## Snowman
 Forged from the snows of New Hampshire, Snowmen rule the streets during snowstorms. Surprisingly, they are vulnerable to snowballs, and especially vulnerable to lemon-lime Spite. They are worth 20 points times what stage Noodle is on.
 ## Spite
-When Noodle is being overwhelmed by the snowmen, he can shake up a Spite and sweep all of the snowmen from the screen. Snowmen defeated from a soda blast are worth half as many points. You earn Spite at the end of a stage if you collect 10 coins or more during the stage.
+When Noodle is being overwhelmed by the snowmen, he can shake up a Spite and sweep all of the snowmen from the screen. Snowmen defeated from a soda blast are worth half as many points. You earn Spite at the end of a stage if you collect 15 times this stage coins or more during the stage (ex. stage 1 is 15 coins, stage 2 is 30 coins, etc).
 # Controls
 - Move your mouse to move Noodle
 - Click to throw snowballs
